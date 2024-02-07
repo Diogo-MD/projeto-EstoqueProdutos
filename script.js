@@ -32,23 +32,16 @@ Exibição de Resultados:
 Exibe resultados das operações realizadas no estoque.
 */
 
-class meuEstoque {
+class Estoque {
     constructor() {
-    }
-}
-
-class Produtos {
-    constructor(nome, quantidadeDisponivel, precoUnitario) {
-        this.nome = nome;
-        this.quantidadeDisponivel = quantidadeDisponivel;
-        this.precoUnitario = precoUnitario;
+        this.produtos = [];
     }
 
-    adicionarProduto() {
-
+    adicionarProduto(produto) {
+        this.produtos.push(produto);
     }
 
-    removerProduto() {
+    removerProduto(produto) {
 
     }
 
@@ -61,31 +54,27 @@ class Produtos {
     }
 }
 
-class ProdutoNaoPerecivel extends Produtos {
+class Produto {
     constructor(nome, quantidadeDisponivel, precoUnitario) {
-        super(nome, quantidadeDisponivel, precoUnitario)
+        this.nome = nome;
+        this.quantidadeDisponivel = quantidadeDisponivel;
+        this.precoUnitario = precoUnitario;
     }
 
-    calcularValortotal(quantidadeDisponivel, precoUnitario) {
-        if(quantidadeDisponivel > 0 && precoUnitario > 0){
-            quantidadeDisponivel * precoUnitario;
-        }
+    calcularValortotal() {
+        this.quantidadeDisponivel * this.precoUnitario;
     }
 }
 
-class ProdutoPerecivel extends Produtos {
+class ProdutoPerecivel extends Produto {
     constructor(nome, quantidadeDisponivel, precoUnitario, dataValidade) {
         super(nome, quantidadeDisponivel, precoUnitario)
         this.dataValidade = dataValidade;
     }
-
-    verificarValidade() {
-        
-    }
 }
 
-let produtos = [];
-let produtosPereciveis = [];
+// Crie uma instância do Estoque
+const meuEstoque = new Estoque();
 
 function cadastrarProduto() {
     // Armazena os dados recebidos no input em variáveis
@@ -95,27 +84,27 @@ function cadastrarProduto() {
 
     // Identifica se o produto é perecível ou não
     const ehperecivel = document.getElementById("ehPerecivel").value;
-    const dataDeValidade = parseFloat(document.getElementById("dataValidade").value);
-
-    let prodClasse;
+    const dataDeValidade = new Date(document.getElementById("dataValidade").value);
 
     // Define quais ações são feitas dependendo se o produto é perecível ou não
+    let prodClasse;
     switch (ehperecivel) {
         case "Perecivel":
             prodClasse = new ProdutoPerecivel(nome, quantidade, precoUnitario, dataDeValidade);
-            produtosPereciveis.push(prodClasse);
-            if (dataDeValidade < 2024) {
-                alert("Você está cadastrando um produto vencido! Tente novamente...");
-            }
             break;
+
         case "naoPerecivel":
-            prodClasse = new ProdutoNaoPerecivel(nome, quantidade, precoUnitario);
-            produtos.push(prodClasse);
+            prodClasse = new Produto(nome, quantidade, precoUnitario);
             break;
+
         default:
             alert("Verifique todos os campos e tente novamente!");
-            break;
+            return;
     }
 
+    meuEstoque.adicionarProduto(prodClasse);
     document.getElementById("produtosForm").reset();
+    
 }
+
+console.log(Produto.calcularValortotal())
