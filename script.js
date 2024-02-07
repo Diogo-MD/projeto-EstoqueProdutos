@@ -38,7 +38,7 @@ class Estoque {
     }
 
     adicionarProduto(produto) {
-        this.produtos.push(produto);
+        
     }
 
     removerProduto(produto) {
@@ -62,7 +62,7 @@ class Produto {
     }
 
     calcularValortotal() {
-        this.quantidadeDisponivel * this.precoUnitario;
+        return this.quantidadeDisponivel * this.precoUnitario;
     }
 }
 
@@ -104,7 +104,7 @@ function cadastrarProduto() {
 
     meuEstoque.adicionarProduto(prodClasse);
     document.getElementById("produtosForm").reset();
+    console.log(Estoque.produtos)
     
 }
 
-console.log(Produto.calcularValortotal())
