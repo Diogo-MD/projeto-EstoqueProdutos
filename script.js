@@ -104,7 +104,7 @@ function cadastrarProduto() {
 
     meuEstoque.adicionarProduto(prodClasse);
     document.getElementById("produtosForm").reset();
-    console.log(Estoque.produtos)
     
 }
 
+console.log(meuEstoque.produtos);
