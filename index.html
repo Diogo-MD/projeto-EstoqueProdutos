@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque</title>
+</head>
+
+<body>
+    <h1>Cadastro de Produtos</h1>
+
+    <form id="produtosForm">
+
+        <label for="nomeProduto">Nome do Produto:</label>
+        <input type="text" id="nomeProduto" required>
+
+        <label for="quantidadeProduto">Quantidade:</label>
+        <input type="text" id="quantidadeProduto" required>
+
+        <label for="precoUnitario">Preço unitário:</label>
+        <input type="text" id="precoUnitario" required>
+
+        <div id="prod-perecivel">
+            <label for="ehPerecivel"></label>
+            <select id="ehPerecivel">
+                <option selected hidden>Selecione um Tipo</option>
+                <option value="Perecivel">Produto Perecível</option>
+                <option value="naoPerecivel">Produto não Perecível</option>
+            </select>
+
+            <label for="dataValidade">Data de Validade:</label>
+            <input type="text" id="dataValidade">
+        </div>
+
+        <button type="button" onclick="cadastrarProduto()">Cadastrar Produto</button>
+
+    </form>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
