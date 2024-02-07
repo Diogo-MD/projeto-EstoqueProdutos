@@ -17,7 +17,7 @@ Descrição: Representa o estoque de produtos, contendo funcionalidades para adi
 Métodos:
 Constructor: Inicializa o estoque com uma lista vazia de produtos.
 adicionarProduto(produto): Adiciona um produto à lista de produtos no estoque.
-removerProduto(nome): Remove um produto da lista pelo nome.
+// removerProduto(nome): Remove um produto da lista pelo nome.
 verificarEstoqueDisponivel(nome): Verifica e exibe a quantidade disponível de um produto pelo nome.
 calcularValorTotalEstoque(): Calcula e exibe o valor total do estoque somando o valor total de cada produto.
 Exemplo de Uso:
@@ -38,19 +38,38 @@ class Estoque {
     }
 
     adicionarProduto(produto) {
-        
+        this.produtos.push(produto);
     }
 
-    removerProduto(produto) {
+    removerProduto(nome) {
+        const indiceProduto = this.produtos.findIndex(produto => produto.nome === nome);
 
+        if (indiceProduto !== -1) {
+            this.produtos.splice(indiceProduto, 1);
+            console.log(`Produto ${nome} removido do estoque.`);
+        } else {
+            console.log(`Produto ${nome} não encontrado no estoque.`);
+        }
     }
 
-    verificarEstoqueDisponível() {
+    verificarEstoqueDisponível(nome) {
+        const produtoEncontrado = this.produtos.find(produto => produto.nome === nome);
 
+        if (produtoEncontrado) {
+            console.log(`Quantidade disponível de ${nome}: ${produtoEncontrado.quantidadeDisponivel}`);
+        } else {
+            console.log(`Produto ${nome} não encontrado no estoque.`);
+        }
     }
 
     calcularTotalEstoque() {
+        let valorTotalEstoque = 0;
 
+        // Percorre a lista de produtos e soma os valores totais de cada produto
+        this.produtos.forEach(produto => {
+            valorTotalEstoque += produto.calcularValorTotal();
+        });
+        return valorTotalEstoque;
     }
 }
 
@@ -61,14 +80,14 @@ class Produto {
         this.precoUnitario = precoUnitario;
     }
 
-    calcularValortotal() {
+    calcularValorTotal() {
         return this.quantidadeDisponivel * this.precoUnitario;
     }
 }
 
 class ProdutoPerecivel extends Produto {
     constructor(nome, quantidadeDisponivel, precoUnitario, dataValidade) {
-        super(nome, quantidadeDisponivel, precoUnitario)
+        super(nome, quantidadeDisponivel, precoUnitario);
         this.dataValidade = dataValidade;
     }
 }
@@ -104,7 +123,14 @@ function cadastrarProduto() {
 
     meuEstoque.adicionarProduto(prodClasse);
     document.getElementById("produtosForm").reset();
-    
-}
 
-console.log(meuEstoque.produtos);
+    meuEstoque.verificarEstoqueDisponível(nome);
+    console.log("Valor Total do Estoque:", meuEstoque.calcularTotalEstoque());
+    console.log(meuEstoque.produtos)
+
+
+    // console.log(meuEstoque.produtos.nome);
+    // meuEstoque.removerProduto(nome);
+    // console.log(meuEstoque.produtos.nome);
+
+}
