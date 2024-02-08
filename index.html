@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estoque</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -22,7 +23,7 @@
         <input type="text" id="precoUnitario" required>
 
         <div id="prod-perecivel">
-            <label for="ehPerecivel"></label>
+            <label for="ehPerecivel">Tipo de Produto:</label>
             <select id="ehPerecivel">
                 <option selected hidden>Selecione um Tipo</option>
                 <option value="Perecivel">Produto Perecível</option>
@@ -36,6 +37,8 @@
         <button type="button" onclick="cadastrarProduto()">Cadastrar Produto</button>
 
     </form>
+
+    <ul id="produtosList"></ul>
 
     <script src="script.js"></script>
 </body>

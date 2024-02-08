@@ -117,7 +117,16 @@ function cadastrarProduto() {
 
     // Identifica se o produto é perecível ou não
     const ehperecivel = document.getElementById("ehPerecivel").value;
-    const dataDeValidade = new Date(document.getElementById("dataValidade").value);
+
+    // Verifica se a data de validade é anterior à data atual
+    const dataDeValidadeInput = document.getElementById("dataValidade").value;
+    const dataDeValidade = new Date(dataDeValidadeInput);
+    const hoje = new Date();
+
+    if (ehperecivel === "Perecivel" && dataDeValidade < hoje) {
+        alert("Produto com data de validade vencida. Verifique e tente novamente!");
+        return;
+    }
 
     // Define quais ações são feitas dependendo se o produto é perecível ou não
     let prodClasse;
@@ -134,17 +143,35 @@ function cadastrarProduto() {
             alert("Verifique todos os campos e tente novamente!");
             return;
     }
-
+    
     meuEstoque.adicionarProduto(prodClasse);
     document.getElementById("produtosForm").reset();
 
-    meuEstoque.verificarEstoqueDisponível(nome);
+    // Chame a função exibirProdutos() depois de adicionar o produto
+    exibirProdutos();
     console.log("Valor Total do Estoque:", meuEstoque.calcularTotalEstoque());
     console.log(meuEstoque.produtos);
+}
 
+function exibirProdutos() {
+    const produtosList = document.getElementById("produtosList");
+    produtosList.innerHTML = "";
 
-    // console.log(meuEstoque.produtos.nome);
-    // meuEstoque.removerProduto(nome);
-    // console.log(meuEstoque.produtos.nome);
+    for (let i = 0; i < meuEstoque.produtos.length; i++) {
+        const produtoItem = document.createElement("li");
+        const produtoCard = criarProdutoCard(meuEstoque.produtos[i]);
+        produtoItem.appendChild(produtoCard);
+        produtosList.appendChild(produtoItem);
+    }
+}
 
+function criarProdutoCard(produto) {
+    const produtoCard = document.createElement("div");
+    produtoCard.className = "produto-card";
+
+    const detalhesProduto = document.createElement("div");
+    detalhesProduto.textContent = `${produto.nome} - Quantidade: ${produto.quantidadeDisponivel} - Valor Total: ${produto.calcularValorTotal()}`;
+    produtoCard.appendChild(detalhesProduto);
+
+    return produtoCard;
 }
