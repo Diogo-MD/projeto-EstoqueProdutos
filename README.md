@@ -33,7 +33,4 @@
   • <b>Projeto 📦 Sistema de Estoque 📦</b>: Desenvolvido com base nas aulas do SENAC - Técnico em Informática para Internet<br><br>
   • Sob a orientação do professor <b>Aécio Brito.</b><br><br>
 </p>
-<hr>
-
-
 <img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=171F2AFF&height=110&section=footer"/>
