@@ -42,18 +42,32 @@ class Estoque {
     }
 
     removerProduto(nome) {
-        const indiceProduto = this.produtos.findIndex(produto => produto.nome === nome);
+        let produtoRemover = null;
 
-        if (indiceProduto !== -1) {
-            this.produtos.splice(indiceProduto, 1);
-            console.log(`Produto ${nome} removido do estoque.`);
-        } else {
+        for (let i = 0; i < this.produtos.length; i++) {
+            if (this.produtos[i].nome === nome) {
+                produtoRemover = this.produtos[i];
+                this.produtos.splice(i, 1);
+                console.log(`Produto ${nome} removido do estoque.`)
+                break;
+            }
+        }
+
+        if (!produtoRemover) {
             console.log(`Produto ${nome} não encontrado no estoque.`);
         }
+
     }
 
     verificarEstoqueDisponível(nome) {
-        const produtoEncontrado = this.produtos.find(produto => produto.nome === nome);
+        let produtoEncontrado = null;
+
+        for (let i = 0; i < this.produtos.length; i++) {
+            if (this.produtos[i].nome === nome) {
+                produtoEncontrado = this.produtos[i];
+                break;
+            }
+        }
 
         if (produtoEncontrado) {
             console.log(`Quantidade disponível de ${nome}: ${produtoEncontrado.quantidadeDisponivel}`);
@@ -126,7 +140,7 @@ function cadastrarProduto() {
 
     meuEstoque.verificarEstoqueDisponível(nome);
     console.log("Valor Total do Estoque:", meuEstoque.calcularTotalEstoque());
-    console.log(meuEstoque.produtos)
+    console.log(meuEstoque.produtos);
 
 
     // console.log(meuEstoque.produtos.nome);
