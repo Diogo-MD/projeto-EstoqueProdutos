@@ -1,3 +1,7 @@
+*{
+    margin: 2px;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
@@ -74,7 +78,26 @@ button:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin: 0 auto;  /* Adiciona esta linha para centralizar os itens */
     list-style-type: none;
-    margin: 0;
     padding: 0;
+    text-align: center;
+}
+
+.button-decremento {
+    background-color: #e74c3c; /* Cor de fundo do botão de decremento */
+    color: #fff; /* Cor do texto do botão de decremento */
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Efeito de transição suave */
+}
+
+.button-decremento:hover {
+    background-color: #c0392b; /* Cor de fundo do botão de decremento ao passar o mouse */
+}
+
+.produto-esgotado {
+    opacity: 0.2; /* Ajuste a opacidade conforme necessário */
 }

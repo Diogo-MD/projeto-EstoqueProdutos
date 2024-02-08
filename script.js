@@ -143,14 +143,15 @@ function cadastrarProduto() {
             alert("Verifique todos os campos e tente novamente!");
             return;
     }
-    
+
     meuEstoque.adicionarProduto(prodClasse);
     document.getElementById("produtosForm").reset();
 
-    // Chame a função exibirProdutos() depois de adicionar o produto
     exibirProdutos();
     console.log("Valor Total do Estoque:", meuEstoque.calcularTotalEstoque());
     console.log(meuEstoque.produtos);
+
+    
 }
 
 function exibirProdutos() {
@@ -165,13 +166,45 @@ function exibirProdutos() {
     }
 }
 
+function decrementarQuantidade(nome) {
+    const produto = meuEstoque.produtos.find(produto => produto.nome === nome);
+
+    if (produto && produto.quantidadeDisponivel > 0) {
+        produto.quantidadeDisponivel--;
+
+        // Atualiza a lista de produtos
+        exibirProdutos();
+        console.log("Quantidade de " + nome + " decrementada. Nova quantidade: " + produto.quantidadeDisponivel);
+
+        // Verifica se a quantidade chegou a zero e adiciona a classe "produto-esgotado"
+        if (produto.quantidadeDisponivel === 0) {
+            const produtoCard = document.getElementById(`produto-${nome}`);
+            if (produtoCard) {
+                produtoCard.classList.add("produto-esgotado");
+            }
+        }
+    } else {
+        alert("Produto não encontrado ou quantidade já é zero.");
+    }
+}
+
 function criarProdutoCard(produto) {
     const produtoCard = document.createElement("div");
     produtoCard.className = "produto-card";
+    produtoCard.id = `produto-${produto.nome}`;
 
     const detalhesProduto = document.createElement("div");
     detalhesProduto.textContent = `${produto.nome} - Quantidade: ${produto.quantidadeDisponivel} - Valor Total: ${produto.calcularValorTotal()}`;
     produtoCard.appendChild(detalhesProduto);
+
+    // Adiciona o botão de decremento
+    const botaoDecremento = document.createElement("button");
+    botaoDecremento.textContent = "Remover";
+    botaoDecremento.className = "button-decremento";
+    botaoDecremento.onclick = function () {
+        decrementarQuantidade(produto.nome);
+    };
+    produtoCard.appendChild(botaoDecremento);
 
     return produtoCard;
 }
