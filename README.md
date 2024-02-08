@@ -6,7 +6,7 @@
 
 <hr><h3 align="center">💡 Funcionalidades Principais 💡</h3>
 
-<p align="center">
+<p align="left">
   • <b>Adição e Remoção de Produtos:</b> Capacidade de cadastrar e remover produtos do estoque, proporcionando flexibilidade na gestão.<br><br>
   • <b>Verificação de Disponibilidade:</b> Consulta rápida para verificar a quantidade disponível de um produto específico no estoque.<br><br>
   • <b>Calculadora de Valor Total do Estoque:</b> Função que calcula e exibe o valor total do estoque somando os valores totais de cada produto.<br><br>
