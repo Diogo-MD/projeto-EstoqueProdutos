@@ -29,4 +29,11 @@
 
 <hr><h3 align="center"><a href="https://www.linkedin.com/in/diogo-madeira-852330278/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" style="border-radius: 30px" target="_blank"></a></h3>
 
+<p align="left">
+  • <b>Projeto 📦 Sistema de Estoque 📦</b>: Desenvolvido com base nas aulas do SENAC - Técnico em Informática para Internet<br><br>
+  • Sob a orientação do professor <b>Aécio Brito.</b><br><br>
+</p>
+<hr>
+
+
 <img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=171F2AFF&height=110&section=footer"/>
