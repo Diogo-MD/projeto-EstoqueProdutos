@@ -194,7 +194,7 @@ function criarProdutoCard(produto) {
     produtoCard.id = `produto-${produto.nome}`;
 
     const detalhesProduto = document.createElement("div");
-    detalhesProduto.textContent = `${produto.nome} - Quantidade: ${produto.quantidadeDisponivel} - Valor Total: ${produto.calcularValorTotal()}`;
+    detalhesProduto.textContent = `${produto.nome} - Quantidade: ${produto.quantidadeDisponivel} - Valor Total: R$${produto.calcularValorTotal()}`;
     produtoCard.appendChild(detalhesProduto);
 
     // Adiciona o botão de decremento
