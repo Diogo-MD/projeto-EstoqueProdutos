@@ -190,7 +190,7 @@ function decrementarQuantidade(nome) {
 
 function criarProdutoCard(produto) {
     const produtoCard = document.createElement("div");
-    produtoCard.className = "produto-card";
+    produtoCard.className = `produto-card ${produto.quantidadeDisponivel === 0 ? 'produto-esgotado' : ''}`;
     produtoCard.id = `produto-${produto.nome}`;
 
     const detalhesProduto = document.createElement("div");
