@@ -31,6 +31,8 @@
 
 <p align="left">
   • <b>Projeto 📦 Sistema de Estoque 📦</b>: Desenvolvido com base nas aulas do SENAC - Técnico em Informática para Internet<br><br>
-  • Sob a orientação do professor <b>Aécio Brito.</b><br><br>
+  • Sob a orientação do professor <a href="https://github.com/aeciobrito" target="_blank"><b>Aécio Brito.</b></a><br><br>
 </p>
 <img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=171F2AFF&height=110&section=footer"/>
+
+
