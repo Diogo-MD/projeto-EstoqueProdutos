@@ -148,22 +148,28 @@ function cadastrarProduto() {
     document.getElementById("produtosForm").reset();
 
     exibirProdutos();
-    console.log("Valor Total do Estoque:", meuEstoque.calcularTotalEstoque());
-    console.log(meuEstoque.produtos);
-
-    
 }
 
 function exibirProdutos() {
     const produtosList = document.getElementById("produtosList");
+    const valorTotalEstoqueSpan = document.getElementById("valorTotalEstoque");
+
     produtosList.innerHTML = "";
+
+    let valorTotalEstoque = 0;
 
     for (let i = 0; i < meuEstoque.produtos.length; i++) {
         const produtoItem = document.createElement("li");
         const produtoCard = criarProdutoCard(meuEstoque.produtos[i]);
         produtoItem.appendChild(produtoCard);
         produtosList.appendChild(produtoItem);
+
+        // Atualiza o valor total do estoque
+        valorTotalEstoque += meuEstoque.produtos[i].calcularValorTotal();
     }
+
+    // Atualiza o valor total do estoque na div
+    valorTotalEstoqueSpan.textContent = valorTotalEstoque.toFixed(2);
 }
 
 function decrementarQuantidade(nome) {
@@ -172,7 +178,7 @@ function decrementarQuantidade(nome) {
     if (produto && produto.quantidadeDisponivel > 0) {
         produto.quantidadeDisponivel--;
 
-        // Atualiza a lista de produtos
+        // Atualiza a lista de produtos e o valor total do estoque
         exibirProdutos();
         console.log("Quantidade de " + nome + " decrementada. Nova quantidade: " + produto.quantidadeDisponivel);
 
